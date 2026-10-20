@@ -43,7 +43,7 @@ button{padding:12px 18px;border:0;border-radius:12px;background:var(--ac);color:
 :focus-visible{outline:3px solid var(--ac);outline-offset:2px}
 .note{margin:18px 4px 0;font-size:.8rem;color:var(--mut);text-align:center}
 @media (prefers-reduced-motion:no-preference){.card{animation:up .4s ease both}@keyframes up{from{opacity:0;transform:translateY(8px)}}}
-.hd-in { text-align: center; }
+.hd-in { display: flex; flex-direction: row-reverse; align-items: center; justify-content: center; gap: 14px; text-align: left; }
 .hd { width: calc(100% - 32px); max-width: 528px; margin: calc(16px + env(safe-area-inset-top, 0px)) auto 0; padding: 22px 20px; border-radius: 18px; background: #041652; }
 .wave { display: none; }
 main { margin-top: 0; }
@@ -60,7 +60,7 @@ main { margin-top: 0; }
 .hero form { padding: 18px 20px 20px; margin-top: 0; }
 .hero .err { margin: 14px 20px 0; font-weight: 600; }
 .hero button { background: #041652; color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
-.hd-in { display: flex; align-items: right; justify-content: center; gap: 13px; text-align: left; }
+.hd-in { display: flex; align-items: right; justify-content: center; gap: 30px; text-align: left; }
 .escudo { height: 80px; width: auto; flex: none; }
 .txt { min-width: 0; }
 .txt p { margin: 0; text-align: left; }
@@ -84,7 +84,6 @@ main { margin-top: 0; }
   <p class="note" id="note"></p>
 </main>
 <script>
-// Pega aquí la URL /exec de tu aplicación de Apps Script. Vacía = modo demostración.
 const API_URL = "https://script.google.com/macros/s/AKfycbyyIKhmB_q3prwRwgIJshZD9LV0ypNQe4BBLUAtBGLxuRsmCX6sAYdaNgZ72i50xbfc/exec";
 const FASES = ["Recibido", "Calibrado", "Entregado"];
 const DESC = { "Recibido": "Tu equipo llegó al laboratorio y quedó registrado.",
