@@ -7,27 +7,37 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eef4f7;--sf:#fff;--ink:#0b2433;--mut:#5a7482;--line:#d5e2e9;--ac:#041652;--acs:#dbe3f7;--pend:#bccbd4;--h1:#0b2f45;--h2:#0a7f86}
-@media (prefers-color-scheme:dark){:root{--bg:#08161f;--sf:#10283a;--ink:#e7f1f6;--mut:#8fa9b7;--line:#23425a;--ac:#8fa8ff;--acs#1b2a5e;--pend:#35566a;--h2:#0f6f78;color-scheme:dark}}
+  
+/* ===== COLORES (línea 1: modo claro, línea 2: modo oscuro) ===== */
+:root{--bg:#eef4f7;--sf:#fff;--ink:#0b2433;--mut:#5a7482;--line:#d5e2e9;--ac:#041652;--acs:#dbe3f7;--pend:#bccbd4}
+@media (prefers-color-scheme:dark){:root{--bg:#08161f;--sf:#10283a;--ink:#e7f1f6;--mut:#8fa9b7;--line:#23425a;--ac:#8fa8ff;--acs:#1b2a5e;--pend:#35566a;color-scheme:dark}}
+
+/* ===== BASE ===== */
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;padding-bottom:env(safe-area-inset-bottom,0)}
-.hd{background:linear-gradient(135deg,var(--h1),var(--h2));color:#fff;padding:calc(22px + env(safe-area-inset-top,0)) 20px 44px;position:relative}
-.hd-in{max-width:560px;margin:0 auto}
-.hd p{margin:0}
-.uni{font-weight:800;font-size:1.15rem;line-height:1.25}
-.sede{opacity:.9}
-.lab{margin-top:10px;display:inline-block;padding:4px 12px;border-radius:99px;background:rgba(255,255,255,.18);font-weight:600;font-size:.9rem}
-.wave{position:absolute;left:0;bottom:-1px;width:100%;height:28px;display:block}
-main{max-width:560px;margin:-6px auto 0;padding:0 16px 40px}
+main{max-width:560px;margin:0 auto;padding:0 16px 40px}
 .card{background:var(--sf);border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:14px;box-shadow:0 2px 10px rgba(11,47,69,.07)}
-.ot{margin:0;color:var(--mut);font-size:.9rem}.ot b{color:var(--ink);font-size:1.15rem}
-.eq{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:14px 0 0}
-.eq div{background:var(--bg);border-radius:12px;padding:10px 12px}
-.eq dt{font-size:.75rem;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
-.eq dd{margin:2px 0 0;font-weight:600;word-break:break-word}
-.pill{display:inline-block;background:var(--acs);color:var(--ac);font-weight:700;font-size:.78rem;padding:3px 10px;border-radius:99px}
 h1{font-size:clamp(2rem,9vw,2.8rem);line-height:1.05;margin:10px 0 6px;font-weight:800}
 .desc{margin:0;color:var(--mut)}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){.card{animation:up .4s ease both}@keyframes up{from{opacity:0;transform:translateY(8px)}}}
+
+/* ===== ENCABEZADO (texto a la izquierda, escudo a la derecha) ===== */
+.hd{width:calc(100% - 32px);max-width:528px;margin:calc(16px + env(safe-area-inset-top,0px)) auto 0;padding:22px 20px;border-radius:18px;background:#041652;color:#fff}
+.hd-in{display:flex;flex-direction:row-reverse;align-items:center;justify-content:center;gap:clamp(16px,5vw,70px)}
+.hd p{margin:0}
+.escudo{height:80px;width:auto;flex:none}
+.txt{min-width:0}
+.uni{font-weight:800;font-size:1.05rem;line-height:1.25}
+.sede{opacity:.9}
+.lab{margin-top:6px;font-weight:600;font-size:.9rem}
+
+/* ===== RESULTADO: orden, equipo y estado ===== */
+.ot{margin:0;color:var(--mut);font-size:.9rem}.ot b{color:var(--ink);font-size:1.15rem}
+.eq{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:14px 0 0}
+.eq dt{font-size:.75rem;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+.eq dd{margin:2px 0 0;font-weight:600;word-break:break-word}
+.pill{color:var(--ac);font-weight:700;font-size:.78rem}
 .steps{list-style:none;display:flex;margin:26px 0 0;padding:0}
 .steps li{flex:1;text-align:center;position:relative}
 .steps li::before{content:"";position:absolute;top:17px;right:50%;width:100%;height:4px;background:var(--pend);border-radius:4px}
@@ -37,35 +47,19 @@ h1{font-size:clamp(2rem,9vw,2.8rem);line-height:1.05;margin:10px 0 6px;font-weig
 .done .c{background:var(--ac);border-color:var(--ac);color:var(--sf)}
 .cur .c{border-color:var(--ac);color:var(--ac);box-shadow:0 0 0 6px var(--acs)}
 .n{font-weight:700;font-size:.9rem}.d{font-size:.78rem;color:var(--mut)}
-form{display:flex;gap:8px;margin-top:14px}
+
+/* ===== PÁGINA PRINCIPAL: foto y casilla del código ===== */
+.hero{padding:0;overflow:hidden}
+.photo{position:relative;height:230px}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(4,22,82,.92) 0%,rgba(4,22,82,.35) 55%,rgba(4,22,82,0) 100%)}
+.ov{position:absolute;left:20px;right:20px;bottom:16px;z-index:1;text-align:center}
+.ov h1{color:#fff;font-size:1.7rem;margin:0 0 4px}
+.ov p{color:#fff;margin:0;opacity:.92}
+.hero .err{margin:14px 20px 0;font-weight:600}
+form{display:flex;gap:8px;padding:18px 20px 20px}
 input{flex:1;min-width:0;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit}
-button{padding:12px 18px;border:0;border-radius:12px;background:var(--ac);color:var(--sf);font:inherit;font-weight:700;cursor:pointer}
-:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
-.note{margin:18px 4px 0;font-size:.8rem;color:var(--mut);text-align:center}
-@media (prefers-reduced-motion:no-preference){.card{animation:up .4s ease both}@keyframes up{from{opacity:0;transform:translateY(8px)}}}
-.hd-in { display: flex; flex-direction: row-reverse; align-items: center; justify-content: center; gap: 0px; text-align: left; }
-.hd { width: calc(100% - 32px); max-width: 528px; margin: calc(16px + env(safe-area-inset-top, 0px)) auto 0; padding: 22px 20px; border-radius: 18px; background: #041652; }
-.wave { display: none; }
-main { margin-top: 0; }
-.lab { background: none; padding: 0; border-radius: 0; }
-.eq div { background: none; padding: 0; }
-.pill { background: none; padding: 0; }
-  .hero { padding: 0; overflow: hidden; }
-.photo { position: relative; height: 230px; }
-.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; display: block; }
-.photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(4,22,82,.92) 0%, rgba(4,22,82,.35) 55%, rgba(4,22,82,0) 100%); }
-.ov { position: absolute; left: 20px; right: 20px; bottom: 16px; z-index: 1; text-align: center; }
-.ov h1 { color: #fff; font-size: 1.7rem; margin: 0 0 4px; }
-.ov p { color: #fff; margin: 0; opacity: .92; }
-.hero form { padding: 18px 20px 20px; margin-top: 0; }
-.hero .err { margin: 14px 20px 0; font-weight: 600; }
-.hero button { background: #041652; color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
-.hd-in { display: flex; align-items: right; justify-content: center; gap: 70px; text-align: left; }
-.escudo { height: 80px; width: auto; flex: none; }
-.txt { min-width: 0; }
-.txt p { margin: 0; text-align: left; }
-.uni { font-size: 1.05rem; }
-.lab { margin-top: 6px; }
+button{padding:12px 18px;border:0;border-radius:12px;background:#041652;color:#fff;font:inherit;font-weight:700;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
 </style>
 </head>
 <body>
@@ -81,17 +75,15 @@ main { margin-top: 0; }
 </header>
 <main>
   <div id="app" aria-live="polite"><section class="card"><p class="desc">Consultando…</p></section></div>
-  <p class="note" id="note"></p>
 </main>
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbyyIKhmB_q3prwRwgIJshZD9LV0ypNQe4BBLUAtBGLxuRsmCX6sAYdaNgZ72i50xbfc/exec";
+// Los nombres de las fases deben ser iguales a los de Code.gs
 const FASES = ["Recibido", "Calibrado", "Entregado"];
 const DESC = { "Recibido": "Tu equipo llegó al laboratorio y quedó registrado.",
                "Calibrado": "La calibración de tu equipo ya se realizó.",
                "Entregado": "Tu equipo fue entregado." };
-const DEMO = { ot: "1042", tipo: "Molinete de hélice", serie: "A-20871", marca: "Ejemplo", fase: "Calibrado",
-  historial: [{ fase: "Recibido", fecha: "2026-10-05T09:12:00" }, { fase: "Calibrado", fecha: "2026-10-09T08:05:00" }] };
-const app = document.getElementById("app"), note = document.getElementById("note");
+const app = document.getElementById("app");
 const id = new URLSearchParams(location.search).get("id");
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const fmt = x => new Date(x).toLocaleDateString("es-CO", { day: "numeric", month: "short", year: "numeric" });
@@ -132,7 +124,6 @@ function render(d) {
 }
 
 async function init() {
-  if (!API_URL) { note.textContent = "Modo demostración: datos de ejemplo."; render(DEMO); return; }
   if (!id) { askCode(); return; }
   try {
     const u = new URL(API_URL); u.searchParams.set("id", id);
