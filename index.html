@@ -51,6 +51,16 @@ main { margin-top: 0; }
 .eq div { background: none; padding: 0; }
 .pill { background: none; padding: 0; }
 </style>
+.hero { padding: 0; overflow: hidden; }
+.photo { position: relative; height: 230px; }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; display: block; }
+.photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(4,22,82,.92) 0%, rgba(4,22,82,.35) 55%, rgba(4,22,82,0) 100%); }
+.ov { position: absolute; left: 20px; right: 20px; bottom: 16px; z-index: 1; text-align: center; }
+.ov h1 { color: #fff; font-size: 1.7rem; margin: 0 0 4px; }
+.ov p { color: #fff; margin: 0; opacity: .92; }
+.hero form { padding: 18px 20px 20px; margin-top: 0; }
+.hero .err { margin: 14px 20px 0; font-weight: 600; }
+.hero button { background: #041652; color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
 </head>
 <body>
 <header class="hd">
@@ -80,8 +90,14 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
 const fmt = x => new Date(x).toLocaleDateString("es-CO", { day: "numeric", month: "short", year: "numeric" });
 
 function askCode(m) {
-  app.innerHTML = `<section class="card">${m ? `<p>${esc(m)}</p>` : `<h1 style="font-size:1.6rem">Consulta tu equipo</h1><p class="desc">Escanea el QR de tu orden o escribe tu código.</p>`}
-    <form id="f"><input name="c" placeholder="Código del equipo" aria-label="Código del equipo" required><button>Consultar</button></form></section>`;
+  app.innerHTML = `<section class="card hero">
+    <div class="photo">
+      <img src="lab-hidraulica.jpg" alt="Edificio del Laboratorio de Hidráulica">
+      <div class="ov"><h1>Consulta tu equipo</h1><p>Escanea el QR de tu orden o escribe tu código.</p></div>
+    </div>
+    ${m ? `<p class="err">${esc(m)}</p>` : ""}
+    <form id="f"><input name="c" placeholder="Código del equipo" aria-label="Código del equipo" required><button>Consultar</button></form>
+  </section>`;
   document.getElementById("f").onsubmit = e => { e.preventDefault(); location.search = "?id=" + encodeURIComponent(e.target.c.value.trim()); };
 }
 
