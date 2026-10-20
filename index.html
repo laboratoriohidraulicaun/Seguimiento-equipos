@@ -118,7 +118,7 @@ function render(d) {
     <p class="desc">${esc(DESC[d.fase] || "")}</p>
     <ol class="steps">${FASES.map((f, i) => {
       const done = i < cur || (i === cur && cur === last), c = done ? "done" : i === cur ? "cur" : "";
-      return `<li class="${c}"><div class="c">${done ? "✓" : i + 1}</div><div class="n">${esc(f)}</div><div class="d">${fe[f] ? fmt(fe[f]) : "—"}</div></li>`;
+      return `<li class="${c}"><div class="c">${done ? "✓" : i + 1}</div><div class="n">${esc(f)}</div><div class="d">${done && fe[f] ? fmt(fe[f]) : "—"}</div></li>`;
     }).join("")}</ol>
   </section>`;
 }
