@@ -81,11 +81,10 @@ button{padding:12px 18px;border:0;border-radius:12px;background:#041652;color:#f
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbyyIKhmB_q3prwRwgIJshZD9LV0ypNQe4BBLUAtBGLxuRsmCX6sAYdaNgZ72i50xbfc/exec";
 // Los nombres de las fases deben ser iguales a los de Code.gs
-const FASES = ["Recibido", "Calibrado", "Entregado"];
+const FASES = ["Recibido", "Calibrado"];
 const TODAS = [...FASES, "Inmesurable"];
 const DESC = { "Recibido": "Tu equipo llegó al laboratorio y quedó registrado.",
                "Calibrado": "La calibración de tu equipo ya se realizó.",
-               "Entregado": "Tu equipo fue entregado.",
                "Inmesurable": "Este equipo es inmesurable: no se puede calibrar." };
 const app = document.getElementById("app");
 const id = new URLSearchParams(location.search).get("id");
@@ -105,7 +104,7 @@ function askCode(m) {
 }
 
 function render(d) {
-  const inm = (d.historial || []).some(h => h.fase === "Inmesurable"), pasos = inm ? ["Recibido", "Inmesurable", "Entregado"] : FASES,
+  const inm = (d.historial || []).some(h => h.fase === "Inmesurable"), pasos = inm ? ["Recibido", "Inmesurable"] : FASES,
     cur = pasos.indexOf(d.fase), last = pasos.length - 1, fe = {};
   (d.historial || []).forEach(h => fe[h.fase] = h.fecha);
   app.innerHTML = `
