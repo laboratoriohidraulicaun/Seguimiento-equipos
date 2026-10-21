@@ -122,7 +122,7 @@ function render(d) {
     <p class="desc">${esc(DESC[d.fase] || "")}</p>
     <ol class="steps">${pasos.map((f, i) => {
       const bad = f === "Inmesurable", done = i < cur || (i === cur && (cur === last || bad)), c = (done ? "done" : i === cur ? "cur" : "") + (bad ? " bad" : "");
-      return `<li class="${c}"><div class="c">${bad ? "!" : done ? "✓" : i + 1}</div><div class="n">${esc(f)}</div><div class="d">${done && fe[f] ? fmt(fe[f]) : "—"}</div></li>`;
+      return `<li class="${c}"><div class="c">${bad ? "!" : done ? "✓" : i + 1}</div><div class="n">${esc(f)}</div><div class="d">${fe[f] ? fmt(fe[f]) : "—"}</div></li>`;
     }).join("")}</ol>
   </section>`;
 }
